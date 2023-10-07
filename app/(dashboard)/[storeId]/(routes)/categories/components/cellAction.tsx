@@ -40,7 +40,7 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
       router.refresh();
     } catch (error) {
       toast.error(
-        "Make sure you removed all products using this category first."
+        "Make sure you removed all categories using this category first."
       );
     } finally {
       setOpen(false);
