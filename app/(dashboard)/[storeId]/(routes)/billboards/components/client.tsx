@@ -1,44 +1,39 @@
 "use client";
 
-import React from "react";
+import { Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
+import { DataTable } from "@/components/ui/data-table";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { Plus } from "lucide-react";
+import { ApiList } from "@/components/ui/api-list";
 
-import { BillboardColumn, columns } from "./columns";
-import { DataTable } from "@/components/ui/dataTable";
-import ApiList from "@/components/ui/apiList";
+import { columns, BillboardColumn } from "./columns";
 
 interface BillboardClientProps {
   data: BillboardColumn[];
 }
-const BillboardClient: React.FC<BillboardClientProps> = ({ data }) => {
-  const router = useRouter();
+
+export const BillboardClient: React.FC<BillboardClientProps> = ({
+  data
+}) => {
   const params = useParams();
+  const router = useRouter();
 
   return (
     <>
       <div className="flex items-center justify-between">
-        <Heading
-          title={`Billboards (${data.length})`}
-          description="Manage billboard for your store"
-        />
-        <Button
-          onClick={() => router.push(`/${params.storeId}/billboards/new`)}
-        >
-          <Plus className="mr-2 h-4 w-4" />
-          Add New
+        <Heading title={`Billboards (${data.length})`} description="Manage billboards for your store" />
+        <Button onClick={() => router.push(`/${params.storeId}/billboards/new`)}>
+          <Plus className="mr-2 h-4 w-4" /> Add New
         </Button>
       </div>
       <Separator />
-      <DataTable columns={columns} data={data} searchKey="label" />
-      <Heading title="API" description="Api calls for Billboardss" />
+      <DataTable searchKey="label" columns={columns} data={data} />
+      <Heading title="API" description="API Calls for Billboards" />
       <Separator />
-      <ApiList entityIdName="billboardId" entityName="billboards" />
+      <ApiList entityName="billboards" entityIdName="billboardId" />
     </>
   );
 };
-
-export default BillboardClient;

@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button";
 import { ProductColumn, columns } from "./columns";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { DataTable } from "@/components/ui/dataTable";
-import ApiList from "@/components/ui/apiList";
+import { DataTable } from "@/components/ui/data-table";
+import { ApiList } from "@/components/ui/api-list";
 
 interface ProductsClientProps {
   data: ProductColumn[];

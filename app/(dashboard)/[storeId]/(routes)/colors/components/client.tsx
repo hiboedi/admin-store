@@ -8,8 +8,8 @@ import { Separator } from "@/components/ui/separator";
 
 import { columns, ColorColumn } from "./columns";
 import { Heading } from "@/components/ui/heading";
-import { DataTable } from "@/components/ui/dataTable";
-import ApiList from "@/components/ui/apiList";
+import { DataTable } from "@/components/ui/data-table";
+import { ApiList } from "@/components/ui/api-list";
 
 interface ColorClientProps {
   data: ColorColumn[];

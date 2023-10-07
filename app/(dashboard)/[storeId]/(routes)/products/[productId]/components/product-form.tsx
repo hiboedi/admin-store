@@ -30,9 +30,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { AlertModal } from "@/components/modals/alertModal";
-import ImageUpload from "@/components/ui/imageUpload";
+import { AlertModal } from "@/components/modals/alert-modal";
 import { Checkbox } from "@/components/ui/checkbox";
+import ImageUpload from "@/components/ui/image-upload";
 
 const formSchema = z.object({
   name: z.string().min(1),

@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { ColorColumn } from "./columns";
-import { AlertModal } from "@/components/modals/alertModal";
+import { AlertModal } from "@/components/modals/alert-modal";
 
 interface CellActionProps {
   data: ColorColumn;

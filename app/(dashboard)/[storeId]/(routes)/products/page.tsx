@@ -1,13 +1,13 @@
 import { format } from "date-fns";
 
-import prismaDB from "@/lib/prismaDB";
+import prismadb from "@/lib/prismadb";
 import { formatter } from "@/lib/utils";
 
 import { ProductsClient } from "./components/client";
 import { ProductColumn } from "./components/columns";
 
 const ProductsPage = async ({ params }: { params: { storeId: string } }) => {
-  const products = await prismaDB.product.findMany({
+  const products = await prismadb.product.findMany({
     where: {
       storeId: params.storeId,
     },

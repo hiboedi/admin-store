@@ -14,7 +14,7 @@ import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
-import { AlertModal } from "@/components/modals/alertModal";
+import { AlertModal } from "@/components/modals/alert-modal";
 
 interface CellActionProps {
   data: SizeColumn;

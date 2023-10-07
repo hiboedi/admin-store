@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { ProductColumn } from "./columns";
-import { AlertModal } from "@/components/modals/alertModal";
+import { AlertModal } from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
 
 interface CellActionProps {

@@ -1,12 +1,12 @@
 import { format } from "date-fns";
 
-import prismaDB from "@/lib/prismaDB";
+import prismadb from "@/lib/prismadb";
 
 import { ColorColumn } from "./components/columns";
 import { ColorClient } from "./components/client";
 
 const ColorsPage = async ({ params }: { params: { storeId: string } }) => {
-  const colors = await prismaDB.color.findMany({
+  const colors = await prismadb.color.findMany({
     where: {
       storeId: params.storeId,
     },

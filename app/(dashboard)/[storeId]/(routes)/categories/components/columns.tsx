@@ -1,16 +1,15 @@
-"use client";
+"use client"
 
-import { ColumnDef } from "@tanstack/react-table";
-import CellAction from "./cellAction";
+import { ColumnDef } from "@tanstack/react-table"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
+import { CellAction } from "./cell-action"
+
 export type CategoryColumn = {
-  id: string;
+  id: string
   name: string;
   billboardLabel: string;
   createdAt: string;
-};
+}
 
 export const columns: ColumnDef<CategoryColumn>[] = [
   {
@@ -27,7 +26,7 @@ export const columns: ColumnDef<CategoryColumn>[] = [
     header: "Date",
   },
   {
-    id: "action",
-    cell: ({ row }) => <CellAction data={row.original} />,
+    id: "actions",
+    cell: ({ row }) => <CellAction data={row.original} />
   },
 ];

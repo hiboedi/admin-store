@@ -2,7 +2,7 @@ import Stripe from "stripe";
 import { NextResponse } from "next/server";
 
 import { stripe } from "@/lib/stripe";
-import prismaDB from "@/lib/prismaDB";
+import prismadb from "@/lib/prismadb";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -24,12 +24,12 @@ export async function POST(
     return new NextResponse("Product ids are required", { status: 400 });
   }
 
-  const products = await prismaDB.product.findMany({
+  const products = await prismadb.product.findMany({
     where: {
       id: {
-        in: productIds,
-      },
-    },
+        in: productIds
+      }
+    }
   });
 
   const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
@@ -38,16 +38,16 @@ export async function POST(
     line_items.push({
       quantity: 1,
       price_data: {
-        currency: "USD",
+        currency: 'USD',
         product_data: {
           name: product.name,
         },
-        unit_amount: product.price.toNumber() * 100,
-      },
+        unit_amount: product.price.toNumber() * 100
+      }
     });
   });
 
-  const order = await prismaDB.order.create({
+  const order = await prismadb.order.create({
     data: {
       storeId: params.storeId,
       isPaid: false,
@@ -55,32 +55,29 @@ export async function POST(
         create: productIds.map((productId: string) => ({
           product: {
             connect: {
-              id: productId,
-            },
-          },
-        })),
-      },
-    },
+              id: productId
+            }
+          }
+        }))
+      }
+    }
   });
 
   const session = await stripe.checkout.sessions.create({
     line_items,
-    mode: "payment",
-    billing_address_collection: "required",
+    mode: 'payment',
+    billing_address_collection: 'required',
     phone_number_collection: {
       enabled: true,
     },
     success_url: `${process.env.FRONTEND_STORE_URL}/cart?success=1`,
     cancel_url: `${process.env.FRONTEND_STORE_URL}/cart?canceled=1`,
     metadata: {
-      orderId: order.id,
+      orderId: order.id
     },
   });
 
-  return NextResponse.json(
-    { url: session.url },
-    {
-      headers: corsHeaders,
-    }
-  );
-}
+  return NextResponse.json({ url: session.url }, {
+    headers: corsHeaders
+  });
+};
